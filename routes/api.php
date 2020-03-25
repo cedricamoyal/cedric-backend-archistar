@@ -30,12 +30,15 @@ Route::post('properties', 'PropertyController@store');
 Route::put('property/{property}/analytic/{analytic}', 'PropertyController@updateAnalyticToProperty');
 
 // Get a summary of all property analytics for an inputted suburb (min value, max value, median value, percentage properties with a value, percentage properties without a value)
+// GET http://cedric-backend-archistar.test/api/properties/suburb/Ryde
 Route::get('properties/suburb/{suburb}', 'PropertyController@suburbAnalytics');
 
 // Get a summary of all property analytics for an inputted state (min value, max value, median value, percentage properties with a value, percentage properties without a value)
+// GET http://cedric-backend-archistar.test/api/properties/state/Vic
 Route::get('properties/state/{state}', 'PropertyController@stateAnalytics');
 
 // Get a summary of all property analytics for an inputted country (min value, max value, median value, percentage properties with a value, percentage properties without a value)
+// GET http://cedric-backend-archistar.test/api/properties/country/Australia
 Route::get('properties/country/{country}', 'PropertyController@countryAnalytics');
 
 // Get all analytics for an inputted property
@@ -45,7 +48,7 @@ Route::get('properties/{property_id}/analytics', 'PropertyController@showAnalyti
 
 // //////
 
-// Other routes
+// Other routes (NOT needed)
 
 // GET http://cedric-backend-archistar.test/api/properties
 Route::get('properties', 'PropertyController@index');

@@ -49,7 +49,7 @@ class PropertyController extends Controller
         // Get all the properties for the suburb "$suburb"
         $properties = Property::with('analytics')->where('suburb', $suburb)->get();
 
-        // Get list of values per suburb and per type - See format below:
+        // Get list of values per type (for one suburb) - See format below:
         // {
         //     "max_Bld_Height_m": [36,31,17, ...],
         //     "min_lot_size_m2": [896,801,1067, ...],
@@ -113,6 +113,7 @@ class PropertyController extends Controller
         return $arrayOfCountryAnalytics;
     }
 
+    // Get list of values per type
     public function getListOfValuesPerType ($array)
     {
         $data = array(
@@ -136,6 +137,8 @@ class PropertyController extends Controller
 
         return $data;
     }
+    // Get suburb analytics
+    // (min value, max value, median value, percentage properties with a value, percentage properties without a value)
     public function getSummaryOfAllPropertyAnalytics ($array)
     {
         $data = array(
