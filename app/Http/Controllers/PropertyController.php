@@ -36,8 +36,10 @@ class PropertyController extends Controller
     // Add/Update an analytic to a property
     public function updateAnalyticToProperty(Property $property, $analytic)
     {
-        $property->analytics()->sync([$analytic]);
-        $propertyWithAnalytics = $property->with('analytics')->get();
+        // Sync Analytic to Property and give random integer (between 0 and 200) to the column value
+        $property->analytics()->sync([$analytic => ['value' => mt_rand(0, 2000)]]);
+
+        $propertyWithAnalytics = $property::with('analytics')->find($property->id);
 
         return $propertyWithAnalytics;
     }
