@@ -29,14 +29,21 @@ Route::post('properties', 'PropertyController@store');
 // PUT http://cedric-backend-archistar.test/api/property/1/analytic/2
 Route::put('property/{property}/analytic/{analytic}', 'PropertyController@updateAnalyticToProperty');
 
+// Get a summary of all property analytics for an inputted suburb (min value, max value, median value, percentage properties with a value, percentage properties without a value)
+Route::get('properties/suburb/{suburb}', 'PropertyController@suburbAnalytics');
+
+// Get a summary of all property analytics for an inputted state (min value, max value, median value, percentage properties with a value, percentage properties without a value)
+Route::get('properties/state/{state}', 'PropertyController@stateAnalytics');
+
+// Get a summary of all property analytics for an inputted country (min value, max value, median value, percentage properties with a value, percentage properties without a value)
+Route::get('properties/country/{country}', 'PropertyController@countryAnalytics');
+
 // Get all analytics for an inputted property
 // GET http://cedric-backend-archistar.test/api/properties/1/analytics
-Route::get('properties/{property}/analytics', 'PropertyController@showAnalyticsOfProperty');
+Route::get('properties/{property_id}/analytics', 'PropertyController@showAnalyticsOfProperty');
 
-// Get a summary of all property analytics for an inputted suburb (min value, max value, median value, percentage properties with a value, percentage properties without a value)
-// Get a summary of all property analytics for an inputted state (min value, max value, median value, percentage properties with a value, percentage properties without a value)
-// Get a summary of all property analytics for an inputted country (min value, max value, median value, percentage properties with a value, percentage properties without a value)
 
+// //////
 
 // Other routes
 
@@ -44,7 +51,7 @@ Route::get('properties/{property}/analytics', 'PropertyController@showAnalyticsO
 Route::get('properties', 'PropertyController@index');
 
 // GET http://cedric-backend-archistar.test/api/properties/1
-Route::get('properties/{property}', 'PropertyController@show');
+Route::get('properties/{property_id}', 'PropertyController@show');
 
 
 // GET http://cedric-backend-archistar.test/api/analytic_types

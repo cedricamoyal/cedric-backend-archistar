@@ -14,6 +14,6 @@ class Property extends Model
 
     public function analytics()
     {
-        return $this->belongsToMany('App\Analytic', 'property_analytics', 'property_id', 'analytic_type_id');
+        return $this->belongsToMany('App\Analytic', 'property_analytics', 'property_id', 'analytic_type_id')->withPivot('value');
     }
 }

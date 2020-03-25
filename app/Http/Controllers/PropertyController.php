@@ -12,19 +12,17 @@ class PropertyController extends Controller
         return Property::all();
     }
 
-    public function show(Property $property)
+    public function show($property_id)
     {
-        $item = $property->with('analytics')->first();
-
-        return $item;
+        return Property::with('analytics')->find($property_id);
     }
 
     // Get all analytics for an inputted property
-    public function showAnalyticsOfProperty(Property $property)
+    public function showAnalyticsOfProperty($property_id)
     {
-        $item = $property->with('analytics')->first();
+        $property = Property::with('analytics')->find($property_id);
 
-        return $item->analytics;
+        return $property->analytics;
     }
 
     // Add a new property
@@ -39,8 +37,39 @@ class PropertyController extends Controller
     public function updateAnalyticToProperty(Property $property, $analytic)
     {
         $property->analytics()->sync([$analytic]);
-        $propertyWithAnalytics = $property->with('analytics')->first();
+        $propertyWithAnalytics = $property->with('analytics')->get();
 
         return $propertyWithAnalytics;
     }
+
+    public function suburbAnalytics ($suburb)
+    {
+        $properties = Property::with('analytics')->where('suburb', $suburb)->get();
+
+        return $properties;
+    }
+
+    public function stateAnalytics ($state)
+    {
+        $properties = Property::with('analytics')->where('state', $state)->get();
+
+        return $properties;
+    }
+
+    public function countryAnalytics ($country)
+    {
+        $properties = Property::with('analytics')->where('country', $country)->get();
+
+        return $properties;
+    }
+
+    // public function getDataFromPropertyArray ($array)
+    // {
+    //     $data = array();
+    //     foreach ($array as $x) {
+
+    //     };
+
+    //     return $data;
+    // }
 }
